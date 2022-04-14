@@ -28,6 +28,11 @@ body {
     margin: 2vh 0 0 0;
     text-align: center;
   }
+  @media(max-height: 400px) {
+    h3{
+      margin: 1vh 0 0 0;
+    }
+  }
   h4{
     font-size: 1.5vh;
     margin: 1.9vh 0 0 0;
@@ -56,14 +61,14 @@ body {
 }
 .madeContainer{
   width: 100%;
-  height: 20vh;
+  height: 18vh;
   background-color: $containerColor;
   @include flexSettings();
   justify-content: flex-start;
-  padding-top: 2vh;
 }
 .madeContainer__heading{
   height: 7vh;
+  @include flexSettings();
 }
 .madeContainer__values{
   @include flexSettings();
@@ -75,10 +80,8 @@ body {
   flex-direction: row;
 }
 .inputContainer{
-  width: (100% / 3);
   @include flexSettings();
   
-
   input{
     width: 65%;
     height: 5vh;
@@ -101,16 +104,15 @@ body {
 
 .worksContainer{
   width: 100%;
-  height: 50%;
+  height: 44%;
   margin: 10px 0px 10px 0px;
   background-color: $containerColor;
   @include flexSettings();
   justify-content: flex-start;
 }
 .worksContainer__heading{
-  height: 8vh;
-  padding-top: 2vh;
-  height: 10%;
+  height: 7vh;
+  @include flexSettings();
 }
 .works{
   height: 90%;
@@ -121,11 +123,13 @@ body {
   width: 100%;
   height: 50%;
   flex-direction: row;
+  align-items: flex-start;
 }
 .works__workBlock{
   @include flexSettings();
   padding: 0 2vw 0 2vw;
   height: 80%;
+  cursor: pointer;
 }
 .imageBlock{
   @include flexSettings();
@@ -138,9 +142,10 @@ body {
   object-fit: cover;
 }
 
+
 .workValueContainer{
   width: 100%;
-  height: 10%;
+  height: 8%;
   background-color: $containerColor;
   margin-bottom: 10px;
   @include flexSettings();
@@ -165,25 +170,30 @@ body {
   width: 10%;
   @include flexSettings();
   justify-content: flex-end;
+
   img{
-  width: 50%;
+  height: 3vh;
   object-fit: cover;
   }
 }
 
 
 
-
-
-
-
-
-
-
-
 .buttonsContainer{
   width: 100%;
-  height: 20%;
-  // background-color: cadetblue;
+  height: 26%;
   @include flexSettings();
+
+  
+}
+.btnContainer{
+  @include flexSettings();
+  height: 40%;
+
+  button{
+    height: 6vh;
+    font-size: 3vh;
+    border-radius: 5px;
+    font-weight: bold;
+  }
 }
