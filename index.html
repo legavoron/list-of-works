@@ -19,15 +19,15 @@
                 <div class="madeContainer__values">
                     <div class="madeContainer__inputsContainer">
                         <div class="inputContainer">
-                            <input type="tel">
+                            <input type="tel" id="lengthElem">
                             <h3>длина</h3>
                         </div>
                         <div class="inputContainer">
-                            <input type="tel">
+                            <input type="tel" id="widthElem">
                             <h3>ширина</h3>
                         </div>
-                        <div class="inputContainer">
-                            <input type="tel" value="1">
+                        <div class="inputContainer" >
+                            <input type="tel" value="1" id="quantityElem">
                             <h3>шт</h3>
                         </div>
                         
@@ -42,7 +42,7 @@
                 </div>
                 <div class="works">
                     <div class="works__rowContainer">
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="shlif">
                             <div class="imageBlock">
                                <img src="./image/shlif.jpg" alt="" class="workLink">
                             </div>
@@ -53,7 +53,7 @@
                                    
                             </div>
                         </div>
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="izol">
                             <div class="imageBlock">
                                <img src="./image/shlif_izol.jpg" alt="" class="workLink">
                             </div>
@@ -64,7 +64,7 @@
                                    
                             </div>
                         </div>
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="grunt">
                             <div class="imageBlock">
                                <img src="./image/shlif_grunt.jpg" alt="" class="workLink">
                             </div>
@@ -75,7 +75,7 @@
                                    
                             </div>
                         </div>
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="polir">
                             <div class="imageBlock">
                                <img src="./image/polir.jpg" alt="" class="workLink">
                             </div>
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="works__rowContainer">
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="pokrIzol">
                             <div class="imageBlock">
                                <img src="./image/izol.jpg" alt="" class="workLink">
                             </div>
@@ -100,7 +100,7 @@
                                    
                             </div>
                         </div>
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="pokrGrunt">
                             <div class="imageBlock">
                                <img src="./image/grunt.jpg" alt="" class="workLink">
                             </div>
@@ -111,7 +111,7 @@
                                    
                             </div>
                         </div>
-                        <div class="works__workBlock">
+                        <div class="works__workBlock" id="pokras">
                             <div class="imageBlock">
                                <img src="./image/pokras.jpg" alt="" class="workLink">
                             </div>
@@ -126,9 +126,7 @@
                     
                 </div>
             </div>
-<!-- ------------------------ workValue------------------ -->
-            
-<!-- ------------------------ buttons------------------ -->
+
             <div class="buttonsContainer">
                 <div class="btnContainer">
                     <button id="btn_add">Добавить</button>
@@ -139,6 +137,7 @@
                 
                 
             </div>
+            
         </div>
 <!-- --------------------wrapper__hideContainer --------------- -->
         <div class="wrapper__hideContainer">
@@ -222,6 +221,9 @@
                     <button id="btn_cls">Закрыть</button>
                 </div>
             </div>
+        </div>
+        <div class="errorMessageBlock">
+            <h1>Ошибка: </h1>
         </div>
     </div>
     
