@@ -9,12 +9,14 @@ h1 {
   font-size: 4vh;
   margin: 0;
   text-align: center;
+  color: rgb(22, 21, 21);
 }
 
 h3 {
   font-size: 2vh;
-  margin: 2vh 0 0 0;
+  margin: 1vh 0 0 0;
   text-align: center;
+  color: rgb(22, 21, 21);
 }
 
 @media (max-height: 400px) {
@@ -24,14 +26,16 @@ h3 {
 }
 h4 {
   font-size: 1.5vh;
-  margin: 1.9vh 0 0 0;
+  margin: 1.5vh 0 0 0;
   text-align: center;
+  color: rgb(22, 21, 21);
 }
 
 h5 {
   font-size: 1.7vh;
   text-align: left;
   margin: 0;
+  color: rgb(22, 21, 21);
 }
 
 .wrapper {
@@ -42,6 +46,7 @@ h5 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
 }
 
 .container {
@@ -58,7 +63,7 @@ h5 {
 
 .madeContainer {
   width: 100%;
-  height: 18vh;
+  height: 30%;
   background-color: #F9F9F9;
   display: flex;
   align-items: center;
@@ -76,11 +81,12 @@ h5 {
 }
 
 .madeContainer__values {
+  width: 100%;
+  height: calc(100% - 7vh);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  justify-content: flex-start;
 }
 
 .madeContainer__inputsContainer {
@@ -100,7 +106,7 @@ h5 {
 }
 .inputContainer input {
   width: 65%;
-  height: 5vh;
+  height: 7vh;
   text-align: center;
   font-size: 4vh;
   border: 2px rgb(219, 219, 219) solid;
@@ -123,8 +129,8 @@ h5 {
 
 .worksContainer {
   width: 100%;
-  height: 44%;
-  margin: 10px 0px 10px 0px;
+  height: calc(40% + 10px);
+  margin: 10px 0px;
   background-color: #F9F9F9;
   display: flex;
   align-items: center;
@@ -134,7 +140,7 @@ h5 {
 }
 
 .worksContainer__heading {
-  height: 7vh;
+  height: 9vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,9 +168,9 @@ h5 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  justify-content: flex-start;
   padding: 0 2vw 0 2vw;
   height: 80%;
-  cursor: pointer;
 }
 
 .imageBlock {
@@ -172,14 +178,28 @@ h5 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  justify-content: flex-start;
   overflow: hidden;
   border-radius: 5px;
   height: 60%;
+  cursor: pointer;
 }
 
 .workLink {
   width: 100%;
   object-fit: cover;
+}
+
+.workBlock__none {
+  width: 100%;
+  height: 100%;
+  background-color: #3D6E8C;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 20%;
+  display: none;
 }
 
 .workValueContainer {
@@ -247,9 +267,179 @@ h5 {
 }
 .btnContainer button {
   height: 6vh;
+  width: 40vw;
   font-size: 3vh;
   border-radius: 5px;
   font-weight: bold;
+  background-color: #F9F9F9;
+  color: rgb(22, 21, 21);
+  border: none;
+}
+.btnContainer button:active {
+  background-color: rgb(199, 199, 199);
+}
+
+.wrapper__hideContainer {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: rgb(22, 21, 21);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  opacity: 100%;
+}
+
+.hide__madeContainer {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #F9F9F9;
+  justify-content: flex-start;
+}
+
+.hide__madeContainer_header {
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hide__block {
+  width: 100%;
+  height: calc(100% - 7vh);
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  padding-bottom: 10px;
+}
+
+.hide__block_element_container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.hide__block_element {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.hide__block_element_header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hide_h4 {
+  margin: 0;
+}
+
+.hide__block_element_values {
+  width: 100%;
+  height: 4vh;
+  padding-right: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.hide__volumeContainer {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #F9F9F9;
+  margin: 10px 0;
+  justify-content: flex-start;
+}
+
+.hide__volumeContainer_header {
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.hide__elem {
+  width: 100%;
+  height: 3vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.hide__elem_work {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hide__elem_work_value {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hide__totalContainer {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #F9F9F9;
+  margin-bottom: 10px;
+  justify-content: flex-start;
+}
+
+.hide__totalContainer_block {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=style.css.map */
