@@ -19,7 +19,8 @@ let errorMessageBlock = document.querySelector('.errorMessageBlock');
 let errorMessage = errorMessageBlock.querySelector('h1');
 
 let hideElementBlock = document.querySelector('.hide__block_element_container');
-
+let blockWorksVolume = document.querySelector('#works_volume');
+let blockTotalVolume = document.querySelector('.hide__totalContainer');
 
 
 quantityElem.value = 1;
@@ -90,7 +91,7 @@ function addParameters() {
     // console.log(works);
     clearValue();
     resetTemporaryElementValue();
-    addNameToComplete();
+    addWorksListToComplete();
 }
 
 function checkParameters() {
@@ -125,7 +126,7 @@ function checkParameters() {
     }
 }
 
-function addNameToComplete() {
+function addWorksListToComplete() {
     
     cleanDiv(hideElementBlock);
 
@@ -166,7 +167,7 @@ function addNameToComplete() {
         arrWorks.push(key);
     }
 
-    console.log(obj);
+    // console.log(obj);
 
     for (let key in obj) {
         let blockWorkName = `<div class="hide__block_element">
@@ -188,18 +189,69 @@ function addNameToComplete() {
                                 </div>`; 
 
             hideElementBlock.insertAdjacentHTML('beforeend', blockWorkValue);
-            
-
-
         }                   
-                         
     }
-    
+    addWorksVolume(obj);
 }
 
+function addWorksVolume(obj) {
+    console.log(obj);
 
+    cleanDiv(blockWorksVolume);
 
+    
 
+    for (let key in obj) {
+        let workVolume = 0;
+        let elemVolume = 0;
+
+        for (let i = 0; i < obj[key].length; i++){
+            console.log(obj[key][i]);
+            elemVolume = (+obj[key][i].len * +obj[key][i].wid * +obj[key][i].quant) / 1000000;
+
+            workVolume += elemVolume;
+            // console.log(workVolume);
+
+            
+        }
+        
+        let elemVolumeBlock = `<div class="hide__elem">
+                            <div class="hide__elem_work">
+                                <h4 class="hide_h4">${key}</h4>
+                            </div>
+                            <div class="hide__elem_work_value">
+                                <h4 class="hide_h4">${workVolume}м2</h4>
+                            </div>
+                        </div>`;
+
+            blockWorksVolume.insertAdjacentHTML('beforeend', elemVolumeBlock)
+    }
+    addTotalVolume(obj);
+}
+
+function addTotalVolume(obj) {
+    cleanDiv(blockTotalVolume);
+    let volume = 0;
+
+    for(let key in obj) {
+        for (let i = 0; i < obj[key].length; i++){
+            let elemVolume = (+obj[key][i].len * +obj[key][i].wid * +obj[key][i].quant) / 1000000;
+
+            volume += elemVolume;
+        }
+
+        console.log(volume);
+    }
+
+    let totalVolumeBlock = `<div class="hide__totalContainer_block">
+                                    <h1>Всего обработано</h1>
+                                </div>
+                                <div class="hide__totalContainer_block">
+                                    <h1>${volume}м2</h1>
+                                </div>`;
+
+    blockTotalVolume.insertAdjacentHTML('beforeend', totalVolumeBlock)
+}    
 
 
 
