@@ -365,3 +365,13 @@ body {
     color: $containerColor;
   }
 }
+#resetBlock{
+  flex-direction: column
+}
+.resetBtns{
+  @include flexSettings();
+
+  height: 50%;
+  width: 100%;
+
+}

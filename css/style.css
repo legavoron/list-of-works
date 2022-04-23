@@ -475,4 +475,17 @@ h5 {
   color: #F9F9F9;
 }
 
+#resetBlock {
+  flex-direction: column;
+}
+
+.resetBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 50%;
+  width: 100%;
+}
+
 /*# sourceMappingURL=style.css.map */

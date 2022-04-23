@@ -15,12 +15,16 @@ let btnClose = document.querySelector('#btn_cls');
 let btnAdd = document.querySelector('#btn_add');
 let btnReset = document.querySelector('#btn_reset');
 
+let btnNo = document.querySelector('#btn_no');
+let btnYes = document.querySelector('#btn_yes');
+
 let errorMessageBlock = document.querySelector('.errorMessageBlock');
 let errorMessage = errorMessageBlock.querySelector('h1');
 
 let hideElementBlock = document.querySelector('.hide__block_element_container');
 let blockWorksVolume = document.querySelector('#works_volume');
-let blockTotalVolume = document.querySelector('.hide__totalContainer');
+let blockTotalVolume = document.querySelector('#total_block_value');
+let resetBlock = document.querySelector('#resetBlock');
 
 
 quantityElem.value = 1;
@@ -98,28 +102,28 @@ function checkParameters() {
     flag = true;
 
     if (temporaryElementValue.work === 'none') {
-        showErrorMessageBlock();
+        showErrorMessageBlock(errorMessageBlock);
         errorMessage.innerHTML = 'Выберите работу';
         flag = false;
         resetTemporaryElementValue();
     }
     
     if (widthElem.value === '' || +widthElem.quantity <= 10) {
-        showErrorMessageBlock();
+        showErrorMessageBlock(errorMessageBlock);
         errorMessage.innerHTML = 'Укажите ширину';
         flag = false;
         resetTemporaryElementValue();
     }
 
     if (lengthElem.value === '' || +lengthElem.quantity <= 10) {
-        showErrorMessageBlock()
+        showErrorMessageBlock(errorMessageBlock)
         errorMessage.innerHTML = 'Укажите длину';
         flag = false;
         resetTemporaryElementValue();
     }
 
     if (lengthElem.quantity === '' || +lengthElem.quantity <= 0) {
-        showErrorMessageBlock()
+        showErrorMessageBlock(errorMessageBlock)
         errorMessage.innerHTML = 'Укажите длину';
         flag = false;
         resetTemporaryElementValue();
@@ -243,15 +247,28 @@ function addTotalVolume(obj) {
         console.log(volume);
     }
 
-    let totalVolumeBlock = `<div class="hide__totalContainer_block">
-                                    <h1>Всего обработано</h1>
-                                </div>
-                                <div class="hide__totalContainer_block">
-                                    <h1>${volume}м2</h1>
-                                </div>`;
+    let totalVolumeBlock = `<h1>${volume}м2</h1>`
+                           
 
     blockTotalVolume.insertAdjacentHTML('beforeend', totalVolumeBlock)
 }    
+
+btnReset.addEventListener('click', resetValues);
+
+function resetValues() {
+    showErrorMessageBlock(resetBlock);
+}
+
+btnNo.addEventListener('click', ()=> {
+    hideElem(resetBlock)
+})
+
+btnYes.addEventListener('click', ()=> {
+    hideElem(resetBlock);
+    cleanDiv(hideElementBlock);
+    cleanDiv(blockWorksVolume);
+    cleanDiv(blockTotalVolume);
+})
 
 
 
@@ -287,8 +304,8 @@ function showElem(elem) {
 function hideElem(elem) {
     elem.style.display = 'none';
 }
-function showErrorMessageBlock() {
-    errorMessageBlock.style.display = 'flex';
+function showErrorMessageBlock(block) {
+    block.style.display = 'flex';
 }
 // --------------------------------- Reset Element Value ----------
 
