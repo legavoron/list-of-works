@@ -37,7 +37,13 @@ let works = {
     quantity: [],
     work: [],
 }
-
+let defaultDataToLocalStorage = {
+    name: 'works',
+    length: [],
+    width: [], 
+    quantity: [],
+    work: [],
+}
 let temporaryElementValue = {
     name: 'temporaryElementValue',
     length: 0,
@@ -55,6 +61,37 @@ let chooseWorks = {
     pokrGrunt: 'покрытие грунтом',
     pokras: 'покраска'
 };
+
+// ---------------------- start ------------------------
+function startApp() {
+    getDataFromLocalStorage();
+    checkLocalStorage();
+    addWorksListToComplete();
+    console.log(works);
+
+
+    
+}
+startApp();
+
+function addDataToLocalStorage() {
+    localStorage.setItem('data', JSON.stringify(works));
+}
+function getDataFromLocalStorage() {
+    works = JSON.parse(localStorage.getItem('data'));
+}
+function cleanLocalStorage() {
+    localStorage.removeItem('data');
+    localStorage.setItem('data', JSON.stringify(defaultDataToLocalStorage));
+}
+function checkLocalStorage() {
+    if (works.work[0] == undefined) {
+        works.length = [];
+        works.quantity = [];
+        works.width = [];
+        works.work = [];
+    }
+}
 
 
 btnAdd.addEventListener('click', () => {
@@ -89,10 +126,8 @@ function addParameters() {
         works.width.push(temporaryElementValue.width);
         works.quantity.push(temporaryElementValue.quantity);
         works.work.push(temporaryElementValue.work);
+        addDataToLocalStorage();
     }
-
-        
-    // console.log(works);
     clearValue();
     resetTemporaryElementValue();
     addWorksListToComplete();
@@ -100,7 +135,7 @@ function addParameters() {
 
 function checkParameters() {
     flag = true;
-
+    
     if (temporaryElementValue.work === 'none') {
         showErrorMessageBlock(errorMessageBlock);
         errorMessage.innerHTML = 'Выберите работу';
@@ -199,7 +234,7 @@ function addWorksListToComplete() {
 }
 
 function addWorksVolume(obj) {
-    console.log(obj);
+    // console.log(obj);
 
     cleanDiv(blockWorksVolume);
 
@@ -210,7 +245,7 @@ function addWorksVolume(obj) {
         let elemVolume = 0;
 
         for (let i = 0; i < obj[key].length; i++){
-            console.log(obj[key][i]);
+            // console.log(obj[key][i]);
             elemVolume = (+obj[key][i].len * +obj[key][i].wid * +obj[key][i].quant) / 1000000;
 
             workVolume += elemVolume;
@@ -224,7 +259,7 @@ function addWorksVolume(obj) {
                                 <h4 class="hide_h4">${key}</h4>
                             </div>
                             <div class="hide__elem_work_value">
-                                <h4 class="hide_h4">${workVolume}м2</h4>
+                                <h4 class="hide_h4">${workVolume.toFixed(2)}м2</h4>
                             </div>
                         </div>`;
 
@@ -244,13 +279,15 @@ function addTotalVolume(obj) {
             volume += elemVolume;
         }
 
-        console.log(volume);
+        // console.log(volume);
     }
 
-    let totalVolumeBlock = `<h1>${volume}м2</h1>`
+    let totalVolumeBlock = `<h1>${volume.toFixed(2)}м2</h1>`
                            
-
-    blockTotalVolume.insertAdjacentHTML('beforeend', totalVolumeBlock)
+    if (works.work[0] !== undefined) {
+        blockTotalVolume.insertAdjacentHTML('beforeend', totalVolumeBlock)
+    }
+    
 }    
 
 btnReset.addEventListener('click', resetValues);
@@ -268,6 +305,7 @@ btnYes.addEventListener('click', ()=> {
     cleanDiv(hideElementBlock);
     cleanDiv(blockWorksVolume);
     cleanDiv(blockTotalVolume);
+
 })
 
 
