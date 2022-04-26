@@ -71,7 +71,7 @@ function startApp() {
 
     
 }
-startApp();
+// startApp();
 
 function addDataToLocalStorage() {
     localStorage.setItem('data', JSON.stringify(works));
@@ -118,7 +118,7 @@ function addParameters() {
         works.width.push(temporaryElementValue.width);
         works.quantity.push(temporaryElementValue.quantity);
         works.work.push(temporaryElementValue.work);
-        addDataToLocalStorage();
+        // addDataToLocalStorage();
     }
     clearValue();
     resetTemporaryElementValue();
