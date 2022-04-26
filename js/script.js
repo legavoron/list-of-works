@@ -65,7 +65,6 @@ let chooseWorks = {
 // ---------------------- start ------------------------
 function startApp() {
     getDataFromLocalStorage();
-    checkLocalStorage();
     addWorksListToComplete();
     console.log(works);
 
@@ -83,14 +82,7 @@ function getDataFromLocalStorage() {
 function cleanLocalStorage() {
     localStorage.removeItem('data');
     localStorage.setItem('data', JSON.stringify(defaultDataToLocalStorage));
-}
-function checkLocalStorage() {
-    if (works.work[0] == undefined) {
-        works.length = [];
-        works.quantity = [];
-        works.width = [];
-        works.work = [];
-    }
+    getDataFromLocalStorage();
 }
 
 
@@ -184,6 +176,7 @@ function addWorksListToComplete() {
             objWorks.len = works.length[i];
             objWorks.wid = works.width[i];
             objWorks.quant = works.quantity[i];
+            objWorks.img = `<img src="./image/bin.svg" alt="" class="bin"></img>`
             obj[elem].push(objWorks);
         } else {
             let objWorks = {
@@ -194,6 +187,7 @@ function addWorksListToComplete() {
             objWorks.len = works.length[i];
             objWorks.wid = works.width[i];
             objWorks.quant = works.quantity[i];
+            objWorks.img = `<img src="./image/bin.svg" alt="" class="bin"></img>`
 
             obj[elem] = [];
             obj[elem].push(objWorks);
@@ -206,7 +200,7 @@ function addWorksListToComplete() {
         arrWorks.push(key);
     }
 
-    // console.log(obj);
+    console.log(obj);
 
     for (let key in obj) {
         let blockWorkName = `<div class="hide__block_element">
@@ -223,21 +217,19 @@ function addWorksListToComplete() {
                                     <h4 class="hide_h4_value">${obj[key][j].len}*${obj[key][j].wid}мм</h4>
                                     <h4 class="hide_h4_value">${obj[key][j].quant}шт</h4>
                                     <div class="hide_workValueContainer__icon">
-                                        <img src="./image/bin.svg" alt="" id="${j}">
+                                        ${obj[key][j].img}
                                     </div>
                                 </div>`; 
 
             hideElementBlock.insertAdjacentHTML('beforeend', blockWorkValue);
         }                   
     }
+    delElement(obj);
     addWorksVolume(obj);
 }
 
 function addWorksVolume(obj) {
-    // console.log(obj);
-
     cleanDiv(blockWorksVolume);
-
     
 
     for (let key in obj) {
@@ -245,13 +237,9 @@ function addWorksVolume(obj) {
         let elemVolume = 0;
 
         for (let i = 0; i < obj[key].length; i++){
-            // console.log(obj[key][i]);
             elemVolume = (+obj[key][i].len * +obj[key][i].wid * +obj[key][i].quant) / 1000000;
 
             workVolume += elemVolume;
-            // console.log(workVolume);
-
-            
         }
         
         let elemVolumeBlock = `<div class="hide__elem">
@@ -259,7 +247,7 @@ function addWorksVolume(obj) {
                                 <h4 class="hide_h4">${key}</h4>
                             </div>
                             <div class="hide__elem_work_value">
-                                <h4 class="hide_h4">${workVolume.toFixed(2)}м2</h4>
+                                <h4 class="hide_h4">${workVolume.toFixed(3)}м2</h4>
                             </div>
                         </div>`;
 
@@ -282,13 +270,27 @@ function addTotalVolume(obj) {
         // console.log(volume);
     }
 
-    let totalVolumeBlock = `<h1>${volume.toFixed(2)}м2</h1>`
+    let totalVolumeBlock = `<h1>${volume.toFixed(3)}м2</h1>`
                            
     if (works.work[0] !== undefined) {
         blockTotalVolume.insertAdjacentHTML('beforeend', totalVolumeBlock)
     }
     
 }    
+
+function delElement(obj) {
+    console.log(obj);
+
+    let bins = document.querySelectorAll('.bin');
+
+    bins.forEach((bin, i) => {
+        bin.addEventListener('click', ()=> {
+            console.log(i);
+        })
+    })
+}
+
+// ---------------------------- Reset Block-------------------------
 
 btnReset.addEventListener('click', resetValues);
 
@@ -305,12 +307,8 @@ btnYes.addEventListener('click', ()=> {
     cleanDiv(hideElementBlock);
     cleanDiv(blockWorksVolume);
     cleanDiv(blockTotalVolume);
-
+    cleanLocalStorage();
 })
-
-
-
-
 
 
 // --------------------- Clic -> show hide color ------------------
@@ -324,8 +322,6 @@ listContainersWorks.forEach((elem, i) => {
         showElem(hideColorWork[i]);
     });
 })
-
-
 
 // ------------------------Show and hide container result -----------
 btnShow.addEventListener('click', ()=> {
