@@ -66,18 +66,21 @@ let chooseWorks = {
 function startApp() {
     getDataFromLocalStorage();
     addWorksListToComplete();
-    console.log(works);
 
 
     
 }
-// startApp();
+startApp();
 
 function addDataToLocalStorage() {
     localStorage.setItem('data', JSON.stringify(works));
 }
 function getDataFromLocalStorage() {
-    works = JSON.parse(localStorage.getItem('data'));
+    let loc = localStorage;
+    if (loc.data) {
+        works = JSON.parse(localStorage.getItem('data'));
+    }
+    
 }
 function cleanLocalStorage() {
     localStorage.removeItem('data');
@@ -118,7 +121,7 @@ function addParameters() {
         works.width.push(temporaryElementValue.width);
         works.quantity.push(temporaryElementValue.quantity);
         works.work.push(temporaryElementValue.work);
-        // addDataToLocalStorage();
+        addDataToLocalStorage();
     }
     clearValue();
     resetTemporaryElementValue();
@@ -266,8 +269,6 @@ function addTotalVolume(obj) {
 
             volume += elemVolume;
         }
-
-        // console.log(volume);
     }
 
     let totalVolumeBlock = `<h1>${volume.toFixed(3)}м2</h1>`
@@ -275,7 +276,6 @@ function addTotalVolume(obj) {
     if (works.work[0] !== undefined) {
         blockTotalVolume.insertAdjacentHTML('beforeend', totalVolumeBlock)
     }
-    
 }    
 
 function delElement(obj) {
