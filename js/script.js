@@ -167,8 +167,6 @@ function addWorksListToComplete() {
 
     let obj = {};
 
-    
-
     works.work.forEach((elem, i) => {
         if (obj[elem]) {
             let objWorks = {
@@ -181,29 +179,23 @@ function addWorksListToComplete() {
             objWorks.quant = works.quantity[i];
             objWorks.img = `<img src="./image/bin.svg" alt="" class="bin"></img>`
             obj[elem].push(objWorks);
+
+
         } else {
             let objWorks = {
                 len: '',
                 wid: '',
                 quant: ''
             }
+
             objWorks.len = works.length[i];
             objWorks.wid = works.width[i];
             objWorks.quant = works.quantity[i];
-            objWorks.img = `<img src="./image/bin.svg" alt="" class="bin"></img>`
-
+            
             obj[elem] = [];
             obj[elem].push(objWorks);
         }
     });
-
-    let arrWorks = [];
-
-    for (let key in obj) {
-        arrWorks.push(key);
-    }
-
-    console.log(obj);
 
     for (let key in obj) {
         let blockWorkName = `<div class="hide__block_element">
@@ -220,7 +212,7 @@ function addWorksListToComplete() {
                                     <h4 class="hide_h4_value">${obj[key][j].len}*${obj[key][j].wid}мм</h4>
                                     <h4 class="hide_h4_value">${obj[key][j].quant}шт</h4>
                                     <div class="hide_workValueContainer__icon">
-                                        ${obj[key][j].img}
+                                    <img src="./image/bin.svg" alt="" class="bin" id="${key}_${j}"></img>
                                     </div>
                                 </div>`; 
 
@@ -279,13 +271,39 @@ function addTotalVolume(obj) {
 }    
 
 function delElement(obj) {
-    console.log(obj);
 
     let bins = document.querySelectorAll('.bin');
 
     bins.forEach((bin, i) => {
         bin.addEventListener('click', ()=> {
-            console.log(i);
+            let arr = [];
+            let numSymbol = 0;
+            let name = '';
+            let count = 0;
+
+            for (let j = 0; j < bin.id.length; j++) {
+                if (bin.id[j] === '_') {
+                    numSymbol = j;
+                }
+            }
+
+            name = bin.id.slice(0, numSymbol);
+            count = bin.id.slice(numSymbol + 1);
+
+            works.work.forEach((elem, k) => {
+                if (elem === name) {
+                    arr.push(name);
+
+                    if ((arr.length - 1) === +count) {
+                        works.length.splice(k, 1);
+                        works.width.splice(k, 1);
+                        works.quantity.splice(k, 1);
+                        works.work.splice(k, 1);
+                    }
+                }
+            });
+            addDataToLocalStorage();
+            addWorksListToComplete();
         })
     })
 }
@@ -312,6 +330,7 @@ btnYes.addEventListener('click', ()=> {
 
 
 // --------------------- Clic -> show hide color ------------------
+
 listContainersWorks.forEach((elem, i) => {
     elem.addEventListener('click', () => {
         
@@ -324,6 +343,7 @@ listContainersWorks.forEach((elem, i) => {
 })
 
 // ------------------------Show and hide container result -----------
+
 btnShow.addEventListener('click', ()=> {
     showElem(containerResult);
 });
@@ -332,6 +352,7 @@ btnClose.addEventListener('click', ()=> {
 });
 
 //  -------------------------- Additional functions ---------------
+
 function showElem(elem) {
     elem.style.display = 'block';
 }
@@ -341,6 +362,7 @@ function hideElem(elem) {
 function showErrorMessageBlock(block) {
     block.style.display = 'flex';
 }
+
 // --------------------------------- Reset Element Value ----------
 
 function resetTemporaryElementValue() {
