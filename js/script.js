@@ -209,8 +209,10 @@ function addWorksListToComplete() {
 
         for (let j = 0; j < obj[key].length; j ++) {
             let blockWorkValue = `<div class="hide__block_element_values">
-                                    <h4 class="hide_h4_value">${obj[key][j].len}*${obj[key][j].wid}мм</h4>
-                                    <h4 class="hide_h4_value">${obj[key][j].quant}шт</h4>
+                                    <div class="hide_h4_value_block">
+                                    <h4 class="hide_h4_value">${obj[key][j].len}*${obj[key][j].wid}мм</h4></div>
+                                    <div class="hide_h4_quantity_block">
+                                    <h4 class="hide_h4_quantity">${obj[key][j].quant}шт</h4></div>
                                     <div class="hide_workValueContainer__icon">
                                     <img src="./image/bin.svg" alt="" class="bin" id="${key}_${j}"></img>
                                     </div>
@@ -270,7 +272,7 @@ function addTotalVolume(obj) {
     }
 }    
 
-function delElement(obj) {
+function delElement() {
 
     let bins = document.querySelectorAll('.bin');
 

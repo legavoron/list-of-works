@@ -140,7 +140,7 @@ h5 {
 }
 
 .worksContainer__heading {
-  height: 9vh;
+  height: 7vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +148,7 @@ h5 {
 }
 
 .works {
-  height: 90%;
+  height: calc(100% - 7vh);
   width: 100%;
 }
 
@@ -356,14 +356,35 @@ h5 {
 }
 
 .hide_h4 {
-  margin: 5px 0 0 0;
   font-weight: 900;
 }
 
 .hide_h4_value {
   margin: 0;
-  width: 40%;
   text-align: left;
+}
+
+.hide_h4_quantity {
+  margin: 0;
+  text-align: left;
+}
+
+.hide_h4_value_block {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hide_h4_quantity_block {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .hide_workValueContainer__icon {

@@ -117,11 +117,12 @@ body {
   justify-content: flex-start;
 }
 .worksContainer__heading{
-  height: 9vh;
+  height: 7vh;
+  // margin-bottom: 7vh;
   @include flexSettings();
 }
 .works{
-  height: 90%;
+  height: calc(100% - 7vh);
   width: 100%;
 }
 .works__rowContainer{
@@ -277,13 +278,27 @@ body {
   align-items: flex-start;
 }
 .hide_h4{
-  margin: 5px 0 0 0;
   font-weight: 900;
 }
 .hide_h4_value{
   margin: 0;
-  width: 40%;
+  // width: 50%;
   text-align: left;
+}
+.hide_h4_quantity{
+  margin: 0;
+  // width: 40%;
+  text-align: left;
+}
+.hide_h4_value_block{
+  width: 50%;
+  @include flexSettings();
+  align-items: flex-start;
+}
+.hide_h4_quantity_block{
+  width: 30%;
+  @include flexSettings();
+  align-items: flex-start;
 }
 .hide_workValueContainer__icon{
   width: 20%;
